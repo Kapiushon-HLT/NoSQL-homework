@@ -13,30 +13,6 @@ public class Counter {
     private ArrayList<String> key;
     private String Freq;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public ArrayList<String> getKey() {
-        return key;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public String getFREQ() {
-        return Freq;
-    }
-
     public Counter(JSONObject obj){
         name=obj.getString("counterName");
         index=obj.getString("counterIndex");
@@ -57,4 +33,29 @@ public class Counter {
             Freq=obj.getString("FREQFields");
         }
     }
+    public String getName() {
+        return name;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public ArrayList<String> getKey() {
+        return key;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getFreq() {
+        return Freq;
+    }
+
+
 }

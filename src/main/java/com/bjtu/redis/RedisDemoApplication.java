@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -23,57 +24,94 @@ public class RedisDemoApplication {
     public static String list;
     public static String keyField;
     public static HashMap<String, Counter> counters;
-
+    public static HashMap<String, Action> actions;
+    public static List<String> actionNames;
     public static void main(String[] args) {
         counters = new HashMap<>();
+        actions = new HashMap<>();
+        actionNames = new ArrayList<>();
+        readActionConfig();
         readCounterConfig();
         Monitor monitorCounters = new Monitor();
         monitorCounters.initFileMonitor("Counter.json");
+        Boolean canRun = true;
+        while (canRun) {
+            System.out.println("请选择您要进行的操作:");
+            System.out.println("1 查看Actions");
+            System.out.println("2 查看 Counters");
+            System.out.println("3 执行 Actions");
+            System.out.println("0 退出");
+            Scanner opt = new Scanner(System.in);
+            int x = opt.nextInt();
+            int size = 0;
+            switch (x) {
 
-        while (true) {
-            System.out.println("Please enter the number of operation you choose:");
-            System.out.println("0 show");
-            System.out.println("1 incr");
-            System.out.println("2 decr");
-            System.out.println("3 incr_freq");
-            System.out.println("4 decr_freq");
-            System.out.println("5 exit");
-            Scanner scanner = new Scanner(System.in);
-            int x = scanner.nextInt();
+                case 0:
+                    canRun = false;
+                    break;
+                case 1:
+                    size = actionNames.size();
+                    for (int i = 0; i < size; ++i) {
+                        System.out.println(i + " " + actionNames.get(i));
+                    }
+                    break;
+                case 2:
+                    int cntt = 0;
+                    for (Map.Entry<String, Counter> entry : counters.entrySet()) {
+                        System.out.println(cntt + " " + entry.getKey());
+                        cntt++;
+                    }
+                    break;
+                case 3:
+                    while (true) {
+                        System.out.println("请输入需要执行操作的序号:");
+                        System.out.println("1 show");
+                        System.out.println("2 incr");
+                        System.out.println("3 decr");
+                        System.out.println("4 incr_freq");
+                        System.out.println("5 decr_freq");
+                        System.out.println("0 exit");
+                        Scanner scanner = new Scanner(System.in);
+                        int y = scanner.nextInt();
 
-                switch (x) {
+                        switch (y) {
 
-                    case 5:
-                        System.exit(0);
+                            case 0:
+                                System.exit(0);
 
-                    case 0:
-                        Counter c0 = counters.get("show");
-                        show(c0);
-                        break;
-                    case 1:
-                        Counter c11 = counters.get("show");
-                        show(c11);
-                        Counter c12 = counters.get("incr");
-                        incr(c12);
-                        break;
-                    case 2:
-                        Counter c21 = counters.get("show");
-                        show(c21);
-                        Counter c22 = counters.get("decr");
-                        decr(c22);
-                        break;
-                    case 3:
-                        Counter c3 = counters.get("incrFreq");
-                        incrFreq(c3);
-                        break;
-                    case 4:
-                        Counter c4 = counters.get("decrFreq");
-                        decrFreq(c4);
-                        break;
+                            case 1:
+                                Counter c0 = counters.get("show");
+                                show(c0);
+                                break;
+                            case 2:
+                                Counter a = counters.get("show");
+                                show(a);
+                                Counter b = counters.get("incr");
+                                incr(b);
+                                break;
+                            case 3:
+                                Counter c = counters.get("show");
+                                show(c);
+                                Counter d = counters.get("decr");
+                                decr(d);
+                                break;
+                            case 4:
+                                Counter e = counters.get("incrFreq");
+                                incrFreq(e);
+                                break;
+                            case 5:
+                                Counter f = counters.get("decrFreq");
+                                decrFreq(f);
+                                break;
+
+                        }
+
+                    }
 
             }
 
         }
+
     }
 
 
@@ -83,7 +121,7 @@ public class RedisDemoApplication {
         try {
             File jsonFile = new File(fileName);
             FileReader fileReader = new FileReader(jsonFile);
-            Reader jsonReader = new InputStreamReader(new FileInputStream(jsonFile),"utf-8");
+            Reader jsonReader = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
 
             while ((i = jsonReader.read()) != -1) {
                 them.append((char) i);
@@ -109,7 +147,19 @@ public class RedisDemoApplication {
         }
     }
 
-/********************************************************************************/
+    public static void readActionConfig() {
+        String path = RedisDemoApplication.class.getClassLoader().getResource("Action.json").getPath();
+        String actionsString = readJsonFile(path);
+        JSONObject actionss = JSONObject.parseObject(actionsString);
+        JSONArray array = actionss.getJSONArray("actions");
+        for (Object obj : array) {
+            Action a = new Action((JSONObject) obj);
+            actions.put(a.getName(), a);
+            actionNames.add(a.getName());
+        }
+    }
+
+
 
     private static void show(Counter c) {
         key = c.getKey().get(0);
@@ -172,6 +222,7 @@ public class RedisDemoApplication {
     public static void decrFreq(Counter counter){
         keyField = counter.getKey().get(0);
         RedisUtil redisUtil=new RedisUtil();
+
         try{
             for (int i = 0; i < redisUtil.llen(keyField); i++) {
                 System.out.println("USER在 "+redisUtil.lindex(keyField,i)+" 退出");
@@ -181,27 +232,6 @@ public class RedisDemoApplication {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*

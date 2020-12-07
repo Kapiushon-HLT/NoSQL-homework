@@ -24,7 +24,12 @@ public class Monitor {
         //创建文件变化监听器
         FileAlterationMonitor monitor = new FileAlterationMonitor(interval);
         monitor.addObserver(observer);
-        // 开始监控
+
+        monitor(monitor);
+    }
+    // 开始监控
+    public static void monitor(FileAlterationMonitor monitor){
+
         try {
             monitor.start();
             System.out.println("MONITOR");

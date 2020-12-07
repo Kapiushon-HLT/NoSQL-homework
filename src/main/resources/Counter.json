@@ -1,0 +1,38 @@
+{
+  "counters": [
+    {
+      "counterName": "incr",
+      "counterIndex": "1",
+      "type": "num",
+      "keyFields": ["user","userIncr"],
+      "valueFields": "3"
+    },
+    {
+      "counterName": "decr",
+      "counterIndex": "2",
+      "type": "num",
+      "keyFields": ["user","userDecr"],
+      "valueFields": "-3"
+    },
+    {
+      "counterName": "show",
+      "counterIndex": "3",
+      "type": "num",
+      "keyFields": ["user"]
+    },
+    {
+      "counterName": "incrFreq",
+      "counterIndex": "4",
+      "type": "num",
+      "keyFields": ["userInList"],
+      "FREQFields":"202011301200 202012032300"
+    },
+    {
+      "counterName": "decrFreq",
+      "counterIndex": "5",
+      "type": "num",
+      "keyFields": ["userOutList"],
+      "FREQFields":"202012031200 202012032300"
+    }
+  ]
+}

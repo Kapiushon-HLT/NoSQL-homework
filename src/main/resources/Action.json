@@ -1,7 +1,7 @@
 {
   "actions": [
     {
-      "name": "SHOW_USER",
+      "name": "show",
       "feature_retrieve": {
         "counters": [
           {
@@ -11,7 +11,7 @@
       }
     },
     {
-      "name": "INCR_USER",
+      "name": "incr",
       "feature_retrieve": {
         "counters": [
           {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "name": "DECR_USER",
+      "name": "decr",
       "feature_retrieve": {
         "counters": [
           {
@@ -45,7 +45,7 @@
       }
     },
     {
-      "name": "SHOW_In_FREQ",
+      "name": "incr_Freq",
       "feature_retrieve": {
         "counters": [
           {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "name": "SHOW_Out_FREQ",
+      "name": "decr_Freq",
       "feature_retrieve": {
         "counters": [
           {

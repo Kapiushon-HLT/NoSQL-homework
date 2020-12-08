@@ -42,6 +42,7 @@ public class RedisDemoApplication {
             System.out.println("2 查看所有Actions");
             System.out.println("3 执行Action");
             System.out.println("0 退出程序");
+            System.out.print("请输入您的选择:");
             Scanner opt = new Scanner(System.in);
 //            int x = opt.nextInt();
             String x = br.readLine();
@@ -67,36 +68,31 @@ public class RedisDemoApplication {
                 case "3":
                     boolean exit = false;
                     while (!exit) {
+                        System.out.println("********执行Action********");
                         System.out.println("请输入需要执行操作的序号:");
                         System.out.println("1 show");
                         System.out.println("2 incr");
                         System.out.println("3 decr");
-                        System.out.println("4 incr_Freq");
-                        System.out.println("5 decr_Freq");
+                        System.out.println("4 incrFreq");
+                        System.out.println("5 decrFreq");
                         System.out.println("0 返回上一级目录");
-                        Scanner scanner = new Scanner(System.in);
-                        //int y = scanner.nextInt();
+                        System.out.print("请输入您的选择:");
                         String y = br.readLine();
                         switch (y) {
 
                             case "0":
                                 exit = true;
                                 break;
-                                //System.exit(0);
 
                             case "1":
                                 Counter c0 = counters.get("show");
                                 show(c0);
                                 break;
                             case "2":
-                                Counter a = counters.get("show");
-                                show(a);
                                 Counter b = counters.get("incr");
                                 incr(b);
                                 break;
                             case "3":
-                                Counter c = counters.get("show");
-                                show(c);
                                 Counter d = counters.get("decr");
                                 decr(d);
                                 break;
@@ -113,7 +109,7 @@ public class RedisDemoApplication {
                                 break;
                         }
 
-                    }
+                    }break;
                 default://输入错误
                     System.out.println("输入错误，请输入0-3的整数");
                     break;
@@ -151,9 +147,6 @@ public class RedisDemoApplication {
 
     }
     public static void readCounterConfig() {
-//        String path = RedisDemoApplication.class.getClassLoader().getResource("Counter.json").getPath();
-//        String countersString = readJsonFile(path);
-//        JSONObject counterss = JSONObject.parseObject(countersString);
         JSONObject counterss = JSONObject.parseObject(getString("Counter.json"));
         JSONArray array = counterss.getJSONArray("counters");
         for (Object obj : array) {
@@ -163,9 +156,6 @@ public class RedisDemoApplication {
     }
 
     public static void readActionConfig() {
-//        String path = RedisDemoApplication.class.getClassLoader().getResource("Action.json").getPath();
-//        String actionsString = readJsonFile(path);
-//        JSONObject actionss = JSONObject.parseObject(actionsString);
         JSONObject actionss = JSONObject.parseObject(getString("Action.json"));
         JSONArray array = actionss.getJSONArray("actions");
         for (Object obj : array) {
@@ -182,7 +172,6 @@ public class RedisDemoApplication {
 
         RedisUtil redisUtil = new RedisUtil();
         try {
-            //System.out.println("The value of " + key + " is " + redisUtil.get(key));
             SimpleDateFormat f = new SimpleDateFormat("yyyy年-MM月dd日-HH:mm");
             Date date = new Date();
             String sDate=f.format(date);
@@ -200,7 +189,6 @@ public class RedisDemoApplication {
         RedisUtil redisUtil = new RedisUtil();
         try {
             redisUtil.incr(key, incr.getValue());
-            //System.out.println("The value of " + key + " increased by " + incr.getValue() + " = " + redisUtil.get(key));
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
             String sDate=time.format(date);
@@ -218,10 +206,10 @@ public class RedisDemoApplication {
         RedisUtil redisUtil = new RedisUtil();
         try {
             redisUtil.decr(key, decr.getValue());
-            System.out.println("The value of " + key + " decreased by " + decr.getValue() + " = " + redisUtil.get(key));
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
             String sDate=time.format(date);
+            String exitNum = ""+decr.getValue();
             System.out.println("有"+decr.getValue()+"位用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
                     +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"进入了直播间。" + " 当前用户数目为： " + redisUtil.get(key));
             redisUtil.lpush(list,sDate);

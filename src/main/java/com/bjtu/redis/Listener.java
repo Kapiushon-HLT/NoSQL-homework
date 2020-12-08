@@ -18,22 +18,22 @@ public class Listener extends FileAlterationListenerAdaptor {
     }
     @Override
     public void onFileCreate(File file) {
-        logger.info("Files were created: " + file.getName());
+        logger.info("文件: " + file.getName() + " 已被创建");
     }
     @Override
     public void onFileChange(File file) {
-        logger.info("Files were modified: " + file.getName());
-        System.out.println("Some files have been modified:" + file.getName());
-        System.out.println("Reloading configuration file...");
+        logger.info("文件: " + file.getName() + " 已被修改");
+        System.out.println("文件: " + file.getName() + " 已被修改");
+        System.out.println("重载配置文件");
         if (file.getName().equals("Counter.json") ) {
             RedisDemoApplication.readCounterConfig();
         }
-        System.out.println("Configuration file has been reloaded.");
+        System.out.println("配置文件已重载");
     }
 
     @Override
     public void onFileDelete(File file) {
-        logger.info("Files were deleted: " + file.getName());
+        logger.info("文件: " + file.getName() + " 已被删除");
     }
 
     @Override

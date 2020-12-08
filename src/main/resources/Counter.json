@@ -2,19 +2,19 @@
   "counters": [
     {
       "counterName": "incr",
-      "introduction": "给user增加2",
+      "introduction": "给user增加1",
       "counterIndex": "1",
       "type": "num",
       "keyFields": ["user","userIncr"],
-      "valueFields": "2"
+      "valueFields": "1"
     },
     {
       "counterName": "decr",
-      "introduction": "给user减少2",
-      "counterIndex": "2",
+      "introduction": "给user减少1",
+      "counterIndex": "1",
       "type": "num",
       "keyFields": ["user","userDecr"],
-      "valueFields": "-2"
+      "valueFields": "-1"
     },
     {
       "counterName": "show",
@@ -29,7 +29,7 @@
       "counterIndex": "4",
       "type": "num",
       "keyFields": ["userInList"],
-      "FREQFields":"202012011200 202012082300"
+      "FREQFields":"202012081200 202012082300"
     },
     {
       "counterName": "decrFreq",
@@ -37,7 +37,7 @@
       "counterIndex": "5",
       "type": "num",
       "keyFields": ["userOutList"],
-      "FREQFields":"202012011200 202012082300"
+      "FREQFields":"202012081200 202012082300"
     }
   ]
 }

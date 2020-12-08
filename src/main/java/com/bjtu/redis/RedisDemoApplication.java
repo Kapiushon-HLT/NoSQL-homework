@@ -27,24 +27,25 @@ public class RedisDemoApplication {
     public static HashMap<String, Action> actions;
     public static List<String> actionNames;
     public static void main(String[] args)  throws Exception{
-        counters = new HashMap<>();
-        actions = new HashMap<>();
-        actionNames = new ArrayList<>();
-        readActionConfig();
-        readCounterConfig();
-        Monitor monitorCounters = new Monitor();
-        monitorCounters.initFileMonitor("Counter.json");
+//        counters = new HashMap<>();
+//        actions = new HashMap<>();
+//        actionNames = new ArrayList<>();
+//        readActionConfig();
+//        readCounterConfig();
+//        Monitor monitorCounters = new Monitor();
+//        monitorCounters.initFileMonitor("Counter.json");
+        //初始化
+        Initialize();
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean ProgramExit = true;
         do {
             System.out.println("请选择您要进行的操作:");
-            System.out.println("1 查看所有Counters");
-            System.out.println("2 查看所有Actions");
-            System.out.println("3 执行Action");
-            System.out.println("0 退出程序");
+            System.out.println("1. 查看所有Counters");
+            System.out.println("2. 查看所有Actions");
+            System.out.println("3. 执行Action");
+            System.out.println("0. 退出程序");
             System.out.print("请输入您的选择:");
-            Scanner opt = new Scanner(System.in);
-//            int x = opt.nextInt();
             String x = br.readLine();
             int size = 0;
             switch (x) {
@@ -70,12 +71,12 @@ public class RedisDemoApplication {
                     while (!exit) {
                         System.out.println("********执行Action********");
                         System.out.println("请输入需要执行操作的序号:");
-                        System.out.println("1 show");
-                        System.out.println("2 incr");
-                        System.out.println("3 decr");
-                        System.out.println("4 incrFreq");
-                        System.out.println("5 decrFreq");
-                        System.out.println("0 返回上一级目录");
+                        System.out.println("1. show");
+                        System.out.println("2. incr");
+                        System.out.println("3. decr");
+                        System.out.println("4. incrFreq");
+                        System.out.println("5. decrFreq");
+                        System.out.println("0. 返回上一级目录");
                         System.out.print("请输入您的选择:");
                         String y = br.readLine();
                         switch (y) {
@@ -83,7 +84,6 @@ public class RedisDemoApplication {
                             case "0":
                                 exit = true;
                                 break;
-
                             case "1":
                                 Counter c0 = counters.get("show");
                                 show(c0);
@@ -119,6 +119,15 @@ public class RedisDemoApplication {
 
     }
 
+    public static void Initialize(){
+        counters = new HashMap<>();
+        actions = new HashMap<>();
+        actionNames = new ArrayList<>();
+        readActionConfig();
+        readCounterConfig();
+        Monitor monitorCounters = new Monitor();
+        monitorCounters.initFileMonitor("Counter.json");
+    }
 
     public static String readJsonFile(String fileName) {
         StringBuffer them = new StringBuffer();
@@ -229,7 +238,7 @@ public class RedisDemoApplication {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -244,7 +253,7 @@ public class RedisDemoApplication {
                         +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 退出直播间");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 }

@@ -6,21 +6,9 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 
 public class Action {
-    private String name;
-    private ArrayList<String> retrieve;
-    private ArrayList<String> save;
-
-    public String getName() {
-        return name;
-    }
-
-    public ArrayList<String> getRetrieve() {
-        return retrieve;
-    }
-
-    public ArrayList<String> getSave() {
-        return save;
-    }
+    private String name;//名字
+    private ArrayList<String> retrieve;//要检索的counters
+    private ArrayList<String> save;//要保存的counters
 
     public Action(JSONObject obj) {
         retrieve=new ArrayList<>();
@@ -42,6 +30,19 @@ public class Action {
             }
         }
     }
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getRetrieve() {
+        return retrieve;
+    }
+
+    public ArrayList<String> getSave() {
+        return save;
+    }
+
+
 
     @Override
     public String toString() {

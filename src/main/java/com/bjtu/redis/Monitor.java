@@ -16,12 +16,12 @@ public class Monitor {
     public void initFileMonitor(String fileName) {
         // 监控目录
         String rootDir = Monitor.class.getClassLoader().getResource("").getPath();
-        Integer time = 1;
+        int time = 1;
         long interval = TimeUnit.SECONDS.toMillis(time);
         FileAlterationObserver observer = new FileAlterationObserver(rootDir);
-        //设置文件变化监听器
+        //设置文件监听器
         observer.addListener(new Listener());
-        //创建文件变化监听器
+        //创建文件监听器
         FileAlterationMonitor monitor = new FileAlterationMonitor(interval);
         monitor.addObserver(observer);
 

@@ -13,7 +13,6 @@ public class Listener extends FileAlterationListenerAdaptor {
     public static final Logger logger = Logger.getLogger(Listener.class);
     @Override
     public void onStart(FileAlterationObserver observer) {
-        //System.out.println("Monitor start!");
         super.onStart(observer);
     }
     @Override

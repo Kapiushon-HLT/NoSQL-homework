@@ -26,14 +26,9 @@ public class RedisDemoApplication {
     public static HashMap<String, Counter> counters;
     public static HashMap<String, Action> actions;
     public static List<String> actionNames;
+
+
     public static void main(String[] args)  throws Exception{
-//        counters = new HashMap<>();
-//        actions = new HashMap<>();
-//        actionNames = new ArrayList<>();
-//        readActionConfig();
-//        readCounterConfig();
-//        Monitor monitorCounters = new Monitor();
-//        monitorCounters.initFileMonitor("Counter.json");
         //初始化
         Initialize();
 
@@ -54,10 +49,10 @@ public class RedisDemoApplication {
                     ProgramExit = false;
                     break;
                 case "1":
-                    int cntt = 0;
+                    int count = 0;
                     for (Map.Entry<String, Counter> entry : counters.entrySet()) {
-                        System.out.println(cntt+1 + " " + entry.getKey());
-                        cntt++;
+                        System.out.println(count+1 + " " + entry.getKey());
+                        count++;
                     }
                     break;
                 case "2":
@@ -117,6 +112,7 @@ public class RedisDemoApplication {
 
         } while (ProgramExit);
 
+        System.exit(0);
     }
 
     public static void Initialize(){
@@ -219,7 +215,7 @@ public class RedisDemoApplication {
             Date date = new Date();
             String sDate=time.format(date);
             String exitNum = ""+decr.getValue();
-            System.out.println("有"+decr.getValue()+"位用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
+            System.out.println("有"+exitNum.substring(1)+"位用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
                     +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"进入了直播间。" + " 当前用户数目为： " + redisUtil.get(key));
             redisUtil.lpush(list,sDate);
         } catch (Exception e) {

@@ -32,7 +32,7 @@ public class Monitor {
 
         try {
             monitor.start();
-            System.out.println("MONITOR");
+            System.out.println("开始监控");
         } catch (Exception e) {
             e.printStackTrace();
         }

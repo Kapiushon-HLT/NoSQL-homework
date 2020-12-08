@@ -26,7 +26,7 @@ public class RedisDemoApplication {
     public static HashMap<String, Counter> counters;
     public static HashMap<String, Action> actions;
     public static List<String> actionNames;
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws Exception{
         counters = new HashMap<>();
         actions = new HashMap<>();
         actionNames = new ArrayList<>();
@@ -34,72 +34,77 @@ public class RedisDemoApplication {
         readCounterConfig();
         Monitor monitorCounters = new Monitor();
         monitorCounters.initFileMonitor("Counter.json");
-        Boolean canRun = true;
-        while (canRun) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean canRun = true;
+        do {
             System.out.println("请选择您要进行的操作:");
-            System.out.println("1 查看Actions");
-            System.out.println("2 查看 Counters");
-            System.out.println("3 执行 Actions");
-            System.out.println("0 退出");
+            System.out.println("1 查看所有Counters");
+            System.out.println("2 查看所有Actions");
+            System.out.println("3 执行 Action");
+            System.out.println("0 退出程序");
             Scanner opt = new Scanner(System.in);
-            int x = opt.nextInt();
+//            int x = opt.nextInt();
+            String x = br.readLine();
             int size = 0;
             switch (x) {
 
-                case 0:
+                case "0":
                     canRun = false;
                     break;
-                case 1:
-                    size = actionNames.size();
-                    for (int i = 0; i < size; ++i) {
-                        System.out.println(i + " " + actionNames.get(i));
-                    }
-                    break;
-                case 2:
+                case "1":
                     int cntt = 0;
                     for (Map.Entry<String, Counter> entry : counters.entrySet()) {
-                        System.out.println(cntt + " " + entry.getKey());
+                        System.out.println(cntt+1 + " " + entry.getKey());
                         cntt++;
                     }
                     break;
-                case 3:
-                    while (true) {
+                case "2":
+                    size = actionNames.size();
+                    for (int i = 0; i < size; ++i) {
+                        System.out.println(i+1 + " " + actionNames.get(i));
+                    }
+                    break;
+                case "3":
+                    boolean exit = false;
+                    while (!exit) {
                         System.out.println("请输入需要执行操作的序号:");
                         System.out.println("1 show");
                         System.out.println("2 incr");
                         System.out.println("3 decr");
-                        System.out.println("4 incr_freq");
-                        System.out.println("5 decr_freq");
-                        System.out.println("0 exit");
+                        System.out.println("4 incr_Freq");
+                        System.out.println("5 decr_Freq");
+                        System.out.println("0 返回上一级目录");
                         Scanner scanner = new Scanner(System.in);
-                        int y = scanner.nextInt();
-
+                        //int y = scanner.nextInt();
+                        String y = br.readLine();
                         switch (y) {
 
-                            case 0:
-                                System.exit(0);
+                            case "0":
+                                exit = true;
+                                break;
+                                //System.exit(0);
 
-                            case 1:
+                            case "1":
                                 Counter c0 = counters.get("show");
                                 show(c0);
                                 break;
-                            case 2:
+                            case "2":
                                 Counter a = counters.get("show");
                                 show(a);
                                 Counter b = counters.get("incr");
                                 incr(b);
                                 break;
-                            case 3:
+                            case "3":
                                 Counter c = counters.get("show");
                                 show(c);
                                 Counter d = counters.get("decr");
                                 decr(d);
                                 break;
-                            case 4:
+                            case "4":
                                 Counter e = counters.get("incrFreq");
                                 incrFreq(e);
                                 break;
-                            case 5:
+                            case "5":
                                 Counter f = counters.get("decrFreq");
                                 decrFreq(f);
                                 break;
@@ -110,7 +115,7 @@ public class RedisDemoApplication {
 
             }
 
-        }
+        } while (canRun);
 
     }
 

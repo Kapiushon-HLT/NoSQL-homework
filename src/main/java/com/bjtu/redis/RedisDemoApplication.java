@@ -35,7 +35,7 @@ public class RedisDemoApplication {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean ProgramExit = true;
         do {
-            System.out.println("请选择您要进行的操作:");
+            System.out.println("********功能列表********");
             System.out.println("1. 查看所有Counters");
             System.out.println("2. 查看所有Actions");
             System.out.println("3. 执行Action");
@@ -65,7 +65,6 @@ public class RedisDemoApplication {
                     boolean exit = false;
                     while (!exit) {
                         System.out.println("********执行Action********");
-                        System.out.println("请输入需要执行操作的序号:");
                         System.out.println("1. show");
                         System.out.println("2. incr");
                         System.out.println("3. decr");
@@ -111,7 +110,7 @@ public class RedisDemoApplication {
             }
 
         } while (ProgramExit);
-
+        System.out.println("程序退出！");
         System.exit(0);
     }
 
@@ -171,11 +170,9 @@ public class RedisDemoApplication {
     }
 
 
-
     public static void show(Counter c) {
         key = c.getKey().get(0);
 
-       // RedisUtil redisUtil = new RedisUtil();
         try {
             SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
@@ -188,15 +185,15 @@ public class RedisDemoApplication {
         }
 
     }
+
     public static void InitkeyAndlist(Counter c){
         key = c.getKey().get(0);
         list = c.getKey().get(1);
     }
+
     public static void incr(Counter incr) {
-//        key = incr.getKey().get(0);
-//        list = incr.getKey().get(1);
         InitkeyAndlist(incr);
-        //RedisUtil redisUtil = new RedisUtil();
+
         try {
             redisUtil.incr(key, incr.getValue());
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
@@ -208,29 +205,12 @@ public class RedisDemoApplication {
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
-        //获取user和userInList在Redis数据库中的key值
-//        String user = incr.getKey().get(0);
-//        String userInList = incr.getKey().get(1);
-//
-//        //若没有创建user或者已过期，则要设置
-//
-//            redisUtil.incr(user,incr.getValue());
-//
-//        //将现在的时间变为字符串以及yyyyMMddHHmm格式
-//        SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
-//        Date date = new Date();
-//        String sDate=f.format(date);
-//        redisUtil.lpush(userInList,sDate);
-//        System.out.println("有用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-//                +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"进入了直播间。");
-        //ro.closeJedis();
+
     }
 
     public static void decr(Counter decr) {
-//        key = decr.getKey().get(0);
-//        list = decr.getKey().get(1);
         InitkeyAndlist(decr);
-       // RedisUtil redisUtil = new RedisUtil();
+
         try {
             redisUtil.decr(key, decr.getValue());
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
@@ -253,27 +233,11 @@ public class RedisDemoApplication {
         String end = freq.substring(13,25);//周期结束时间
 
         String userInList = counter.getKey().get(0);
-//        try{
-//            String userInTime = redisUtil.lindex(userInList, 0);
-//           // redisUtil.getLen(userInList);
-//            System.out.println(userInTime);
-//            for (int i = 0; i < redisUtil.llen(keyField); i++) {
-//                String sDate = redisUtil.lindex(keyField,i);
-//                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-//                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 进入直播间");
-//
-//            }
-//        } catch (Exception e) {
-//            System.out.println(Arrays.toString(e.getStackTrace()));
-//        }
 
-        //userInList列表中的时间数据
         long i = 0;
         long sum = 0;
         String userInTime = redisUtil.lindex(userInList, i);
         while(userInTime.compareTo(start)>=0 && userInTime.compareTo(end)<=0){
-//            System.out.println("有用户在"+userInTime.substring(0,4)+"年"+userInTime.substring(4,6)+"月"+userInTime.substring(6,8)
-//                    +"日"+userInTime.substring(8,10)+":"+userInTime.substring(10,12)+"进入了直播间。");
             System.out.println("用户在 "+userInTime.substring(0,4)+"年"+userInTime.substring(4,6)+"月"+userInTime.substring(6,8)
                         +"日"+userInTime.substring(8,10)+":"+userInTime.substring(10,12)+" 进入直播间");
             sum++;
@@ -292,26 +256,14 @@ public class RedisDemoApplication {
 
     public static void showDecrFreq(Counter counter){
         keyField = counter.getKey().get(0);
-      //  RedisUtil redisUtil=new RedisUtil();
 
-        keyField = counter.getKey().get(0);
         String freq = counter.getFreq();
 
         String start = freq.substring(0,12);//周期起始时间
         String end = freq.substring(13,25);//周期结束时间
 
         String userOutList = counter.getKey().get(0);
-//        try{
-//            for (int i = 0; i < redisUtil.llen(keyField); i++) {
-//                String sDate = redisUtil.lindex(keyField,i);
-//                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-//                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 退出直播间");
-//            }
-//        } catch (Exception e) {
-//            System.out.println(Arrays.toString(e.getStackTrace()));
-//        }
 
-        //userOutList列表中的时间数据
         long i = 0;
         long sum = 0;
         String userOutTime = redisUtil.lindex(userOutList, i);

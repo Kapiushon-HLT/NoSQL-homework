@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="837da4aa-c43e-481a-b221-455bf6b3cb97" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\IDEA\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lKhwTX3P7yIiUqsqQ6AW6qw7ZM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/redis" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bjtu.redis" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\93761\Desktop\NoSql\NoSQL-homework\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedisDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="redis-demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bjtu.redis.RedisDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="837da4aa-c43e-481a-b221-455bf6b3cb97" name="Default Changelist" comment="" />
+      <created>1607351928871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607351928871</updated>
+      <workItem from="1607351929973" duration="494000" />
+      <workItem from="1607353975572" duration="2118000" />
+      <workItem from="1607360863827" duration="667000" />
+      <workItem from="1607415584399" duration="6588000" />
+      <workItem from="1607424448129" duration="6273000" />
+      <workItem from="1607432624724" duration="9471000" />
+      <workItem from="1607480849317" duration="6996000" />
+      <workItem from="1607494523981" duration="5356000" />
+    </task>
+    <task id="LOCAL-00001" summary="黄琳棠更改了部分函数">
+      <created>1607352128754</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607352128754</updated>
+    </task>
+    <task id="LOCAL-00002" summary="黄琳棠上传了作业">
+      <created>1607352292779</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607352292779</updated>
+    </task>
+    <task id="LOCAL-00003" summary="黄琳棠修改了部分函数">
+      <created>1607420139611</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607420139611</updated>
+    </task>
+    <task id="LOCAL-00004" summary="黄琳棠修改了部分函数">
+      <created>1607431241846</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607431241846</updated>
+    </task>
+    <task id="LOCAL-00005" summary="黄琳棠修改了部分函数">
+      <created>1607435509039</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607435509039</updated>
+    </task>
+    <task id="LOCAL-00006" summary="黄琳棠修改了部分函数">
+      <created>1607436531130</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1607436531130</updated>
+    </task>
+    <task id="LOCAL-00007" summary="黄琳棠修改了部分函数">
+      <created>1607439448018</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607439448018</updated>
+    </task>
+    <task id="LOCAL-00008" summary="黄琳棠做了一点修改">
+      <created>1607446848986</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607446848986</updated>
+    </task>
+    <task id="LOCAL-00009" summary="黄琳棠修改了若干bug">
+      <created>1607497012352</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607497012352</updated>
+    </task>
+    <task id="LOCAL-00010" summary="黄琳棠修改了若干bug">
+      <created>1607497701554</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607497701554</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Louvain算法">
+      <created>1607504880215</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1607504880215</updated>
+    </task>
+    <task id="LOCAL-00012" summary="调整了文件目录">
+      <created>1607505022642</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1607505022642</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+    <MESSAGE value="黄琳棠更改了部分函数" />
+    <MESSAGE value="黄琳棠上传了作业" />
+    <MESSAGE value="黄琳棠修改了部分函数" />
+    <MESSAGE value="黄琳棠做了一点修改" />
+    <MESSAGE value="黄琳棠修改了若干bug" />
+    <MESSAGE value="Louvain算法" />
+    <MESSAGE value="调整了文件目录" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整了文件目录" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" width="1089" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607432536499">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" width="1089" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607432536499" />
+    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1607432533840">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1607432533840" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1607505130365">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607505130365" />
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.0.center" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.0.left" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.0.right" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.1.bottom" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.1.center" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.1.left" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state width="1493" height="204" key="GridCell.Tab.1.right" timestamp="1607497280075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607497280075" />
+    <state x="494" y="114" key="RollbackChangesDialog" timestamp="1607421567026">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="494" y="114" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607421567026" />
+    <state x="270" y="57" key="SettingsEditor" timestamp="1607354010917">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607354010917" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1607505027278">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1607505027278" />
+    <state x="573" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607421417621">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="573" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1607421417621" />
+  </component>
+</project>

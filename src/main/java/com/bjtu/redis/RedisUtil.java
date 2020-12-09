@@ -126,7 +126,7 @@ public class RedisUtil {
     }
 
 
-    public void lpush(String key ,String...str){
+    public void lpush(String key ,String str){
         try {
             jedis.lpush(key, str);
         } catch (Exception e) {
@@ -134,7 +134,7 @@ public class RedisUtil {
         }
     }
 
-    public String lindex(String key,int index){
+    public String lindex(String key,long index){
         try {
             return jedis.lindex(key, index);
         } catch (Exception e) {
@@ -168,6 +168,9 @@ public class RedisUtil {
             e.printStackTrace();
         }
         return null;
+    }
+    public long getLen(String key){
+        return jedis.llen(key);
     }
 
     public String hmset(String key,Map<String, String> hash){

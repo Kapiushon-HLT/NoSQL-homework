@@ -35,6 +35,7 @@ public class Counter {
             Freq=obj.getString("FREQFields");
         }
     }
+
     public String getName() {
         return name;
     }

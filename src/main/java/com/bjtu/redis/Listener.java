@@ -25,7 +25,7 @@ public class Listener extends FileAlterationListenerAdaptor {
         System.out.println("文件: " + file.getName() + " 已被修改");
         System.out.println("重载配置文件");
         if (file.getName().equals("Counter.json") ) {
-            RedisDemoApplication.readCounterConfig();
+            RedisDemoApplication.readCounterJson();
         }
         System.out.println("配置文件已重载");
     }

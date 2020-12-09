@@ -26,7 +26,7 @@ public class RedisDemoApplication {
     public static HashMap<String, Counter> counters;
     public static HashMap<String, Action> actions;
     public static List<String> actionNames;
-
+    static RedisUtil redisUtil = new RedisUtil();
 
     public static void main(String[] args)  throws Exception{
         //初始化
@@ -69,8 +69,8 @@ public class RedisDemoApplication {
                         System.out.println("1. show");
                         System.out.println("2. incr");
                         System.out.println("3. decr");
-                        System.out.println("4. incrFreq");
-                        System.out.println("5. decrFreq");
+                        System.out.println("4. showIncrFreq");
+                        System.out.println("5. showDecrFreq");
                         System.out.println("0. 返回上一级目录");
                         System.out.print("请输入您的选择:");
                         String y = br.readLine();
@@ -80,24 +80,24 @@ public class RedisDemoApplication {
                                 exit = true;
                                 break;
                             case "1":
-                                Counter c0 = counters.get("show");
-                                show(c0);
+                                Counter a = counters.get("show");
+                                show(a);
                                 break;
                             case "2":
                                 Counter b = counters.get("incr");
                                 incr(b);
                                 break;
                             case "3":
-                                Counter d = counters.get("decr");
-                                decr(d);
+                                Counter c = counters.get("decr");
+                                decr(c);
                                 break;
                             case "4":
-                                Counter e = counters.get("incrFreq");
-                                incrFreq(e);
+                                Counter d = counters.get("showIncrFreq");
+                                showIncrFreq(d);
                                 break;
                             case "5":
-                                Counter f = counters.get("decrFreq");
-                                decrFreq(f);
+                                Counter f = counters.get("showDecrFreq");
+                                showDecrFreq(f);
                                 break;
                             default://输入错误
                                 System.out.println("输入错误，请输入0-5的整数");
@@ -119,14 +119,14 @@ public class RedisDemoApplication {
         counters = new HashMap<>();
         actions = new HashMap<>();
         actionNames = new ArrayList<>();
-        readActionConfig();
-        readCounterConfig();
+        readActionJson();
+        readCounterJson();
         Monitor monitorCounters = new Monitor();
         monitorCounters.initFileMonitor("Counter.json");
     }
 
     public static String readJsonFile(String fileName) {
-        StringBuffer them = new StringBuffer();
+        StringBuffer string = new StringBuffer();
         int i = 0;
         try {
             File jsonFile = new File(fileName);
@@ -134,12 +134,12 @@ public class RedisDemoApplication {
             Reader jsonReader = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
 
             while ((i = jsonReader.read()) != -1) {
-                them.append((char) i);
+                string.append((char) i);
             }
             fileReader.close();
             jsonReader.close();
 
-            return them.toString();
+            return string.toString();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -151,18 +151,18 @@ public class RedisDemoApplication {
         return string;
 
     }
-    public static void readCounterConfig() {
-        JSONObject counterss = JSONObject.parseObject(getString("Counter.json"));
-        JSONArray array = counterss.getJSONArray("counters");
+    public static void readCounterJson() {
+        JSONObject counter = JSONObject.parseObject(getString("Counter.json"));
+        JSONArray array = counter.getJSONArray("counters");
         for (Object obj : array) {
             Counter c = new Counter((JSONObject) obj);
             counters.put(c.getName(), c);
         }
     }
 
-    public static void readActionConfig() {
-        JSONObject actionss = JSONObject.parseObject(getString("Action.json"));
-        JSONArray array = actionss.getJSONArray("actions");
+    public static void readActionJson() {
+        JSONObject action = JSONObject.parseObject(getString("Action.json"));
+        JSONArray array = action.getJSONArray("actions");
         for (Object obj : array) {
             Action a = new Action((JSONObject) obj);
             actions.put(a.getName(), a);
@@ -172,26 +172,31 @@ public class RedisDemoApplication {
 
 
 
-    private static void show(Counter c) {
+    public static void show(Counter c) {
         key = c.getKey().get(0);
 
-        RedisUtil redisUtil = new RedisUtil();
+       // RedisUtil redisUtil = new RedisUtil();
         try {
-            SimpleDateFormat f = new SimpleDateFormat("yyyy年-MM月dd日-HH:mm");
+            SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
             String sDate=f.format(date);
 
-            System.out.println("当前直播间" + key + "数目为: " + redisUtil.get(key) + "人，时间：" + sDate);
+            System.out.println("当前直播间" + key + "数目为: " + redisUtil.get(key) + "人，时间：" + sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
+                    +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12));
         } catch (Exception e) {
             System.out.println( Arrays.toString(e.getStackTrace()));
         }
 
     }
-
-    private static void incr(Counter incr) {
-        key = incr.getKey().get(0);
-        list = incr.getKey().get(1);
-        RedisUtil redisUtil = new RedisUtil();
+    public static void InitkeyAndlist(Counter c){
+        key = c.getKey().get(0);
+        list = c.getKey().get(1);
+    }
+    public static void incr(Counter incr) {
+//        key = incr.getKey().get(0);
+//        list = incr.getKey().get(1);
+        InitkeyAndlist(incr);
+        //RedisUtil redisUtil = new RedisUtil();
         try {
             redisUtil.incr(key, incr.getValue());
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
@@ -203,12 +208,29 @@ public class RedisDemoApplication {
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
+        //获取user和userInList在Redis数据库中的key值
+//        String user = incr.getKey().get(0);
+//        String userInList = incr.getKey().get(1);
+//
+//        //若没有创建user或者已过期，则要设置
+//
+//            redisUtil.incr(user,incr.getValue());
+//
+//        //将现在的时间变为字符串以及yyyyMMddHHmm格式
+//        SimpleDateFormat f = new SimpleDateFormat("yyyyMMddHHmm");
+//        Date date = new Date();
+//        String sDate=f.format(date);
+//        redisUtil.lpush(userInList,sDate);
+//        System.out.println("有用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
+//                +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"进入了直播间。");
+        //ro.closeJedis();
     }
 
-    private static void decr(Counter decr) {
-        key = decr.getKey().get(0);
-        list = decr.getKey().get(1);
-        RedisUtil redisUtil = new RedisUtil();
+    public static void decr(Counter decr) {
+//        key = decr.getKey().get(0);
+//        list = decr.getKey().get(1);
+        InitkeyAndlist(decr);
+       // RedisUtil redisUtil = new RedisUtil();
         try {
             redisUtil.decr(key, decr.getValue());
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
@@ -216,41 +238,97 @@ public class RedisDemoApplication {
             String sDate=time.format(date);
             String exitNum = ""+decr.getValue();
             System.out.println("有"+exitNum.substring(1)+"位用户在"+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-                    +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"进入了直播间。" + " 当前用户数目为： " + redisUtil.get(key));
+                    +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+"离开了直播间。" + " 当前用户数目为： " + redisUtil.get(key));
             redisUtil.lpush(list,sDate);
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 
-    public static void incrFreq(Counter counter){
+    public static void showIncrFreq(Counter counter){
         keyField = counter.getKey().get(0);
-        RedisUtil redisUtil=new RedisUtil();
-        try{
-            for (int i = 0; i < redisUtil.llen(keyField); i++) {
-                String sDate = redisUtil.lindex(keyField,i);
-                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 进入直播间");
+        String freq = counter.getFreq();
 
+        String start = freq.substring(0,12);//周期起始时间
+        String end = freq.substring(13,25);//周期结束时间
+
+        String userInList = counter.getKey().get(0);
+//        try{
+//            String userInTime = redisUtil.lindex(userInList, 0);
+//           // redisUtil.getLen(userInList);
+//            System.out.println(userInTime);
+//            for (int i = 0; i < redisUtil.llen(keyField); i++) {
+//                String sDate = redisUtil.lindex(keyField,i);
+//                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
+//                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 进入直播间");
+//
+//            }
+//        } catch (Exception e) {
+//            System.out.println(Arrays.toString(e.getStackTrace()));
+//        }
+
+        //userInList列表中的时间数据
+        long i = 0;
+        long sum = 0;
+        String userInTime = redisUtil.lindex(userInList, i);
+        while(userInTime.compareTo(start)>=0 && userInTime.compareTo(end)<=0){
+//            System.out.println("有用户在"+userInTime.substring(0,4)+"年"+userInTime.substring(4,6)+"月"+userInTime.substring(6,8)
+//                    +"日"+userInTime.substring(8,10)+":"+userInTime.substring(10,12)+"进入了直播间。");
+            System.out.println("用户在 "+userInTime.substring(0,4)+"年"+userInTime.substring(4,6)+"月"+userInTime.substring(6,8)
+                        +"日"+userInTime.substring(8,10)+":"+userInTime.substring(10,12)+" 进入直播间");
+            sum++;
+            i++;
+
+            if(i<redisUtil.getLen(userInList)) {
+                userInTime = redisUtil.lindex(userInList, i);
+            }else{
+                break;
             }
-        } catch (Exception e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
         }
+        System.out.println(start.substring(0,4)+"年"+start.substring(4,6)+"月"+start.substring(6,8)+"日"+start.substring(8,10)+":"+start.substring(10,12)+"——"
+                +end.substring(0,4)+"年"+end.substring(4,6)+"月"+end.substring(6,8)+"日"+end.substring(8,10)+":"+end.substring(10,12)+" 时间段内共有 "+sum+" 名用户进入直播间。");
     }
 
-    public static void decrFreq(Counter counter){
-        keyField = counter.getKey().get(0);
-        RedisUtil redisUtil=new RedisUtil();
 
-        try{
-            for (int i = 0; i < redisUtil.llen(keyField); i++) {
-                String sDate = redisUtil.lindex(keyField,i);
-                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
-                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 退出直播间");
+    public static void showDecrFreq(Counter counter){
+        keyField = counter.getKey().get(0);
+      //  RedisUtil redisUtil=new RedisUtil();
+
+        keyField = counter.getKey().get(0);
+        String freq = counter.getFreq();
+
+        String start = freq.substring(0,12);//周期起始时间
+        String end = freq.substring(13,25);//周期结束时间
+
+        String userOutList = counter.getKey().get(0);
+//        try{
+//            for (int i = 0; i < redisUtil.llen(keyField); i++) {
+//                String sDate = redisUtil.lindex(keyField,i);
+//                System.out.println("用户在 "+sDate.substring(0,4)+"年"+sDate.substring(4,6)+"月"+sDate.substring(6,8)
+//                        +"日"+sDate.substring(8,10)+":"+sDate.substring(10,12)+" 退出直播间");
+//            }
+//        } catch (Exception e) {
+//            System.out.println(Arrays.toString(e.getStackTrace()));
+//        }
+
+        //userOutList列表中的时间数据
+        long i = 0;
+        long sum = 0;
+        String userOutTime = redisUtil.lindex(userOutList, i);
+        while(userOutTime.compareTo(start)>=0 && userOutTime.compareTo(end)<=0){
+            System.out.println("用户在"+userOutTime.substring(0,4)+"年"+userOutTime.substring(4,6)+"月"+userOutTime.substring(6,8)
+                    +"日"+userOutTime.substring(8,10)+":"+userOutTime.substring(10,12)+"退出直播间。");
+            sum++;
+            i++;
+            if(i<redisUtil.getLen(userOutList)) {
+                userOutTime = redisUtil.lindex(userOutList, i);
+            }else{
+                break;
             }
-        } catch (Exception e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
         }
+        System.out.println(start.substring(0,4)+"年"+start.substring(4,6)+"月"+start.substring(6,8)+"日"+start.substring(8,10)+":"+start.substring(10,12)+"——"
+                +end.substring(0,4)+"年"+end.substring(4,6)+"月"+end.substring(6,8)+"日"+end.substring(8,10)+":"+end.substring(10,12)+" 时间段内共有 "+sum+" 名用户离开直播间。");
+
     }
 }
 

@@ -4,16 +4,16 @@
       "counterName": "incr",
       "introduction": "给user增加1",
       "counterIndex": "1",
-      "type": "num",
-      "keyFields": ["user","userIncr"],
+      "type": "numList",
+      "keyFields": ["user","userInList"],
       "valueFields": "1"
     },
     {
       "counterName": "decr",
       "introduction": "给user减少1",
-      "counterIndex": "1",
-      "type": "num",
-      "keyFields": ["user","userDecr"],
+      "counterIndex": "2",
+      "type": "numList",
+      "keyFields": ["user","userOutList"],
       "valueFields": "-1"
     },
     {
@@ -24,20 +24,20 @@
       "keyFields": ["user"]
     },
     {
-      "counterName": "incrFreq",
+      "counterName": "showIncrFreq",
       "introduction": "按周期显示用户进入直播间的时间与总进入用户量",
       "counterIndex": "4",
       "type": "num",
       "keyFields": ["userInList"],
-      "FREQFields":"202012081200 202012082300"
+      "FREQFields":"202012090800 202012092300"
     },
     {
-      "counterName": "decrFreq",
+      "counterName": "showDecrFreq",
       "introduction": "按周期显示用户离开直播间的时间与总离开用户量",
       "counterIndex": "5",
       "type": "num",
       "keyFields": ["userOutList"],
-      "FREQFields":"202012081200 202012082300"
+      "FREQFields":"202012090800 202012092300"
     }
   ]
 }

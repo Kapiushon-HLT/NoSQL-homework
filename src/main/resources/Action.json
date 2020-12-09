@@ -45,7 +45,7 @@
       }
     },
     {
-      "name": "incrFreq",
+      "name": "showIncrFreq",
       "feature_retrieve": {
         "counters": [
           {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "name": "decrFreq",
+      "name": "showDecrFreq",
       "feature_retrieve": {
         "counters": [
           {
